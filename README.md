@@ -6,10 +6,14 @@ Develop a Python program that simulates a restaurant reservation system,
 allowing users to reserve tables and manage their bookings.
 
   Requirements:
+
     - Create a Restaurant class to represent the restaurant establishment.
+
     - Define attributes for the Restaurant class, such as name, address,
       phone number, and menu.
-    - Create a Table class to represent individual tables in the restaurant.    
+
+    - Create a Table class to represent individual tables in the restaurant.
+        
     - Define attributes for the Table class, such as table_number, capacity,
       and availability.    
     - Create a Reservation class to represent individual customer
