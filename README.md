@@ -4,13 +4,13 @@ Cafeteria App:
 
 Develop a Python program that simulates a restaurant reservation system, allowing users to reserve tables and manage their bookings.
 
-Requirements:
-    Create a Restaurant class to represent the restaurant establishment.
-    Define attributes for the Restaurant class, such as name, address, phone number, and menu.
-    Create a Table class to represent individual tables in the restaurant.    
-    Define attributes for the Table class, such as table_number, capacity, and availability.    
-    Create a Reservation class to represent individual customer reservations.    
-    Define attributes for the Reservation class, such as customer_name, party_size, reservation_time, and table_id.    
+    Requirements:
+        Create a Restaurant class to represent the restaurant establishment.
+        Define attributes for the Restaurant class, such as name, address, phone number, and menu.
+        Create a Table class to represent individual tables in the restaurant.    
+        Define attributes for the Table class, such as table_number, capacity, and availability.    
+        Create a Reservation class to represent individual customer reservations.    
+        Define attributes for the Reservation class, such as customer_name, party_size, reservation_time, and table_id.    
     
     Implement methods for the Restaurant class to manage tables and reservations:    
       a. add_table() to add new tables to the restaurant's table list.    
