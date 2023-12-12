@@ -18,10 +18,9 @@ into account your desires and ideas. We cook from fresh and seasonal products.
 If you want to learn more about us - write or call us. Let's have a fun chat :)
 
 ADDRESS:    J. Biliūno g. 17, Anykščiai
-PHONE:  370 611 82866
-EMAIL:   mandripuodai@gmail.com
+PHONE:      +370 611 82866
+EMAIL:      mandripuodai@gmail.com
 
 Press 'b' for back.
 Press 'q' for exit program.
-
 <<3>>
