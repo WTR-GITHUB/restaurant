@@ -1,6 +1,10 @@
 import os
 
 
+def clear_screen():
+    os.system("cls||clear")
+
+
 def print_from_file(file_name: str, start_sign: str, end_sign: str) -> None:
     with open(file_name, "r", encoding="utf-8") as file:
         is_between_signs = False
@@ -16,16 +20,14 @@ def print_from_file(file_name: str, start_sign: str, end_sign: str) -> None:
                 print(line.strip())
 
 
-def print_category_menu(categories: list, mark: int) -> None:
+def print_category_menu(categories: dict, mark: int) -> None:
     new_categories = []
-    for index, category in enumerate(categories):
-        if index == mark:
-            category = f"<< {category} >>"
+    for key, value in categories.items():
+        if key == mark:
+            value = f"<< {value} >>"
         else:
-            category = category
-
-        new_categories.append(category)
-
+            value = value
+        new_categories.append(value)
     print(*new_categories, sep=" | ")
     print("\n")
 
@@ -38,14 +40,14 @@ def print_item_menu(food_dict: dict) -> None:
 
 wrong_key = ""
 
-categories = [
-    "1. Snacks",
-    "2. Soups",
-    "3. Salad",
-    "4. Burgers with fries",
-    "5. Main dishes",
-    "6. For kids",
-]
+categories = {
+    1: "1. Snacks",
+    2: "2. Soups",
+    3: "3. Salad",
+    4: "4. Burgers with fries",
+    5: "5. Main dishes",
+    6: "6. For kids",
+}
 snacks = {
     "French fries": 3,
     "Fried sweet potatoes": 5,
@@ -56,58 +58,49 @@ snacks = {
     "Chicken wing": 6,
 }
 
-os.system("cls||clear")
+clear_screen()
 
 print_from_file(file_name="test.txt", start_sign="<<1>>", end_sign="<<2>>")
 
 while True:
     user_key = input().lower()
     if user_key == "q":
-        os.system("cls||clear")
+        clear_screen()
         exit()
     elif user_key == "1":
-        os.system("cls||clear")
+        clear_screen()
         print_from_file("test.txt", "<<2>>", "<<3>>")
     elif user_key == "2":
-        os.system("cls||clear")
-        print_category_menu(categories=categories, mark=0)
+        clear_screen()
+        print_category_menu(categories=categories, mark=1)
         print_item_menu(snacks)
+
         while True:
             user_key = input().lower()
-            if user_key == "1":
-                os.system("cls||clear")
-                print_category_menu(categories=categories, mark=0)
+            if user_key in ["1", "2", "3", "4", "5", "6"]:
+                clear_screen()
+                print_category_menu(categories=categories, mark=int(user_key))
                 print_item_menu(snacks)
-            elif user_key == "2":
-                os.system("cls||clear")
-                print_category_menu(categories=categories, mark=1)
-            elif user_key == "3":
-                os.system("cls||clear")
-                print_category_menu(categories=categories, mark=2)
-            elif user_key == "4":
-                os.system("cls||clear")
-                print_category_menu(categories=categories, mark=3)
-            elif user_key == "5":
-                os.system("cls||clear")
-                print_category_menu(categories=categories, mark=4)
-            elif user_key == "6":
-                os.system("cls||clear")
-                print_category_menu(categories=categories, mark=5)
             elif user_key == "b":
-                os.system("cls||clear")
+                clear_screen()
                 print_from_file(
                     file_name="test.txt", start_sign="<<1>>", end_sign="<<2>>"
                 )
                 break
+            else:
+                wrong_key = (
+                    f"You have entered '{user_key}' a bad key, please do better."
+                )
+                print(wrong_key)
 
     elif user_key == "3":
-        os.system("cls||clear")
+        clear_screen()
         print("This will be table order and administration")
     elif user_key == "4":
-        os.system("cls||clear")
+        clear_screen()
         print("Pay and go")
     elif user_key == "b":
-        os.system("cls||clear")
+        clear_screen()
         print_from_file(file_name="test.txt", start_sign="<<1>>", end_sign="<<2>>")
     else:
         wrong_key = f"You have entered '{user_key}' a bad key, please do better."
