@@ -6,6 +6,7 @@ def clear_screen():
 
 
 def print_from_file(file_name: str, start_sign: str, end_sign: str) -> None:
+    readed_data = []
     with open(file_name, "r", encoding="utf-8") as file:
         is_between_signs = False
         for line in file:
@@ -17,7 +18,7 @@ def print_from_file(file_name: str, start_sign: str, end_sign: str) -> None:
                 break
 
             if is_between_signs:
-                print(line.strip())
+                readed_data.append(line.strip())
 
 
 def print_category_menu(categories: dict, mark: int) -> None:

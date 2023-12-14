@@ -1,94 +1,32 @@
-import os
+class Menu:
+    def __init__(self, file_name: str, start_sign: str, end_sign: str) -> None:
+        self.file_name = file_name
+        self.start_sign = start_sign
+        self.end_sign = end_sign
+        self.readed_data = None
 
-# def clear_screen():
-#     os.system("cls||clear")
+    def print_from_file(self) -> "Menu":
+        self.readed_data = []
+        with open(self.file_name, "r", encoding="utf-8") as file:
+            is_between_signs = False
+            for line in file:
+                if self.start_sign in line:
+                    is_between_signs = True
+                    continue
+                elif self.end_sign in line:
+                    is_between_signs = False
+                    break
 
-# def print_category_menu(categories, mark):
-#     # Your implementation for printing category menu
+                if is_between_signs:
+                    self.readed_data.append(line.strip())
+        return self
 
-# def print_item_menu(items):
-#     # Your implementation for printing item menu
-
-# def print_from_file(file_name, start_sign, end_sign):
-#     # Your implementation for printing from file
-
-# while True:
-#     user_key = input().lower()
-
-#     if user_key == "1":
-#         clear_screen()
-#         print_category_menu(categories=categories, mark=0)
-#         print_item_menu(snacks)
-#     elif user_key in ["2", "3", "4", "5", "6"]:
-#         clear_screen()
-#         print_category_menu(categories=categories, mark=int(user_key) - 2)
-#     elif user_key == "b":
-#         clear_screen()
-#         print_from_file(
-#             file_name="test.txt", start_sign="<<1>>", end_sign="<<2>>"
-#         )
-#         break
+    def make_categories(self) -> "Menu":
+        self.category_dict = {i + 1: item for i, item in enumerate(self.readed_data)}
+        return self
 
 
-# categories = {
-#     0: "Category 1",
-#     1: "Category 2",
-#     2: "Category 3",
-#     3: "Category 4",
-#     4: "Category 5",
-#     5: "Category 6",
-# }
-
-# # Usage
-# category_mark = int(user_key) - 2
-# print_category_menu(categories=categories, mark=category_mark)
-
-
-# while True:
-#     try:
-#         user_key = input().lower()
-
-#         if user_key == "1":
-#             clear_screen()
-#             print_category_menu(categories=categories, mark=0)
-#             print_item_menu(snacks)
-#         elif user_key in ["2", "3", "4", "5", "6"]:
-#             clear_screen()
-#             print_category_menu(categories=categories, mark=int(user_key) - 2)
-#         elif user_key == "b":
-#             clear_screen()
-#             print_from_file(
-#                 file_name="test.txt", start_sign="<<1>>", end_sign="<<2>>"
-#             )
-#             break
-#         else:
-#             print("Invalid input. Please try again.")
-
-#     except ValueError:
-#         print("Invalid input. Please enter a valid option.")
-
-categories = {
-    1: "1. Snacks",
-    2: "2. Soups",
-    3: "3. Salad",
-    4: "4. Burgers with fries",
-    5: "5. Main dishes",
-    6: "6. For kids",
-}
-
-
-def print_category_menu(categories: dict, mark: int) -> None:
-    new_categories = []
-    for key, value in categories.items():
-        if key == mark:
-            value = f"<< {value} >>"
-        else:
-            value = value
-
-        new_categories.append(value)
-
-    print(*new_categories, sep=" | ")
-    print("\n")
-
-
-print_category_menu(categories=categories, mark=3)
+menu_1 = Menu(file_name="test.txt", start_sign="<<3>>", end_sign="<<4>>")
+menu_1.print_from_file().make_categories()
+print(menu_1.readed_data)
+print(menu_1.category_dict)

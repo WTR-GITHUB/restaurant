@@ -25,3 +25,10 @@ Press 'b' for back.
 Press 'q' for exit program.
 
 <<3>>
+Snacks
+Soups
+Salad
+Burgers with fries
+Main dishes
+For kids
+<<4>>
