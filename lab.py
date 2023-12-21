@@ -30,3 +30,14 @@ menu_1 = Menu(file_name="test.txt", start_sign="<<3>>", end_sign="<<4>>")
 menu_1.print_from_file().make_categories()
 print(menu_1.readed_data)
 print(menu_1.category_dict)
+
+import sqlite3
+
+conn = sqlite3.connect("restaurant.db")
+c = conn.cursor()
+
+my_list = [1, 2, 3, 4, 5, 6]
+query = tuple(menu_1.category_dict.items())
+
+with conn:
+    c.executemany("INSERT INTO menu (Category_ID, category) VALUES (?, ?);", query)
