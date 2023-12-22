@@ -36,8 +36,8 @@ import sqlite3
 conn = sqlite3.connect("restaurant.db")
 c = conn.cursor()
 
-my_list = [1, 2, 3, 4, 5, 6]
-query = tuple(menu_1.category_dict.items())
+query = [(category,) for category in tuple(menu_1.readed_data)]
+print(query)
 
 with conn:
-    c.executemany("INSERT INTO menu (Category_ID, category) VALUES (?, ?);", query)
+    c.executemany("INSERT INTO menu (category) VALUES (?);", query)
