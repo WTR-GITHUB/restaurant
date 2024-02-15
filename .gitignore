@@ -1,7 +1,5 @@
-.venv
-lab.py
-restaurant.sqbpro
-db_utilities_test.py
-main_test.py
-utilities_test.py
-cafe.db
+.venv/
+.vscode
+__pycache__/
+instance/
+kaffe.db
