@@ -55,4 +55,11 @@ class Food(db.Model):
     category = db.relationship("FoodCategory")
 
 
-
+class Event(db.Model):
+    __tablename__ = "event"
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column("title", db.String(255), nullable=True)
+    url = db.Column("url", db.String(255), nullable=True)
+    clas = db.Column("clas", db.String(255), nullable=True)
+    start_date = db.Column(db.Time)
+    end_date = db.Column(db.Time)

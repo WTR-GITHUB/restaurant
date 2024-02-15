@@ -1,5 +1,5 @@
-from flask import Flask, flash, redirect, render_template, request, url_for
-from modules import db, User, Food, FoodCategory
+from flask import Flask, flash, jsonify, redirect, render_template, request, url_for
+from modules import db, User, Food, FoodCategory, Event
 import forms
 from flask_bcrypt import Bcrypt
 from flask_login import (
@@ -85,12 +85,41 @@ def menu():
     foods_by_category = {category.category_name: Food.query.filter_by(category=category).all() for category in categories}
     return render_template("menu.html", foods_by_category=foods_by_category)
 
-@app.route("/setup")
-def setup():
-    add_food_categories()
-    add_food()
-    return render_template("index.html")
+# @app.route("/setup")
+# def setup():
+#     add_food_categories()
+#     add_food()
+#     return render_template("index.html")
 
+@app.route('/calendar')
+def calendar_events():
+    
+    try:
+        events = Event.query().all()
+        rows = []
+        for event in events:
+            row = {
+                'id': event.id,
+                'title': event.title,
+                'url': event.url,
+                'class': event.class_,
+                'start': int(event.start_date.timestamp()) * 1000,
+                'end': int(event.end_date.timestamp()) * 1000
+            }
+            rows.append(row)
+        resp = jsonify({'success': 1, 'result': rows})
+        resp.status_code = 200
+        return render_template("calendar.html", resp=resp)
+    except Exception as e:
+        print(e)
+        resp = jsonify({'success': 0, 'error': str(e)})
+        resp.status_code = 500
+        return render_template("calendar.html", resp=resp)
+    
+
+@app.route("/reservation")
+def reservation():
+    return render_template("reservation.html")
 
 if __name__ == "__main__":
 

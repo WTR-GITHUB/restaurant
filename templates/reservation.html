@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container text-center">
+    <!-- Step 1 -->
+    <h3>Step 1</h3>
+    <hr style="border-color: black;">
+
+    <div class="col-md-4 mx-auto">
+        <div class="row g-12">
+            <div class="mt-6 mb-6">
+                <label for="customRange3" class="form-label">Please choose the number of guests:</label>
+            </div>
+            <input type="range" class="form-range" min="1" max="12" step="1" id="customRange3" value="1"
+                onchange="updateValue(this.value)">
+            <div class="d-flex justify-content-between">
+                <div id="minValue">0</div>
+                <div id="maxValue">12</div>
+            </div>
+            <div id="sliderValue">1</div>
+        </div>
+        <div class="invalid-feedback">
+            Please provide a valid number of guests.
+        </div>
+    </div>
+    <script>
+        function updateValue(val) {
+            document.getElementById('sliderValue').innerText = val;
+        }
+
+        // Update minimum and maximum values
+        document.getElementById('minValue').innerText = document.getElementById('customRange3').min;
+        document.getElementById('maxValue').innerText = document.getElementById('customRange3').max;
+    </script>
+
+
+    <!-- Step 2 -->
+    <h3>Step 2</h3>
+    <hr style="border-color: black;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+                Please choose a Date
+                <div class="input-group mb-3">
+                    <input type="date" class="form-control" id="datePicker" />
+                    <script>
+                        $(document).ready(function () {
+                            $("#datePicker").datepicker({
+                                format: "yyyy-mm-dd"
+                            });
+                        });
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3 -->
+    <h3>Step 3</h3>
+    <hr style="border-color: black;">
+
+    <div class="col-4 mx-auto mb-4">
+        <button class="btn btn-primary" type="submit" onclick="showTable()">Check availability</button>
+    </div>
+</div>
+
+<div class="container text-center" style="display: none;" id="tableContainer">
+    <h3>Check table availability and choose time</h3>
+    <hr style="border-color: black;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Available</th>
+                <th scope="col">Reserve</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Starting from 11:00 -->
+            <tr>
+                <td>11:00</td>
+                <td>Yes</td>
+                <td><input type="checkbox" class="form-check-input"></td>
+            </tr>
+            <!-- Incrementing by 30 minutes until 24:00 -->
+            <tr>
+                <td>11:30</td>
+                <td>No</td>
+                <td><input type="checkbox" class="form-check-input"></td>
+            </tr>
+            <tr>
+                <td>12:00</td>
+                <td>Yes</td>
+                <td><input type="checkbox" class="form-check-input"></td>
+            </tr>
+            <tr>
+                <td>12:30</td>
+                <td>Yes</td>
+                <td><input type="checkbox" class="form-check-input"></td>
+            </tr>
+            <tr>
+                <td>23:30</td>
+                <td>No</td>
+                <td><input type="checkbox" class="form-check-input"></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<!-- Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Bootstrap datepicker plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<script>
+    function showTable() {
+        document.getElementById('tableContainer').style.display = 'block';
+    }
+</script>
+
+</body>
+
+</html>
+{% endblock content %}
